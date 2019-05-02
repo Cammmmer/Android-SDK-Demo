@@ -3,7 +3,6 @@ package com.applovin.apps.demoapp.interstitials;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.applovin.adview.AppLovinInterstitialAd;
 import com.applovin.adview.AppLovinInterstitialAdDialog;
@@ -33,12 +32,12 @@ public class InterstitialManualLoadingActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_interstitial_manual_loading );
 
-        adStatusTextView = (TextView) findViewById( R.id.status_label );
+        adStatusTextView = findViewById( R.id.status_label );
 
         interstitialAd = AppLovinInterstitialAd.create( AppLovinSdk.getInstance( this ), this );
 
-        final Button loadButton = (Button) findViewById( R.id.loadButton );
-        final Button showButton = (Button) findViewById( R.id.showButton );
+        final Button loadButton = findViewById( R.id.loadButton );
+        final Button showButton = findViewById( R.id.showButton );
 
         loadButton.setOnClickListener( new View.OnClickListener()
         {

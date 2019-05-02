@@ -3,7 +3,6 @@ package com.applovin.apps.demoapp.leaders;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode;
@@ -25,17 +24,17 @@ public class LeaderLayoutEditorActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_leader_layout_editor );
 
-        adStatusTextView = (TextView) findViewById( R.id.status_label );
+        adStatusTextView = findViewById( R.id.status_label );
 
-        final AppLovinAdView adView = (AppLovinAdView) findViewById( R.id.ad_view );
+        final AppLovinAdView adView = findViewById( R.id.ad_view );
 
-        Button loadButton = (Button) findViewById( R.id.load_button );
-
+        final Button loadButton = findViewById( R.id.load_button );
         loadButton.setOnClickListener( new View.OnClickListener()
         {
             @Override
             public void onClick(final View view)
             {
+                log( "Loading ad..." );
                 adView.loadNextAd();
             }
         } );

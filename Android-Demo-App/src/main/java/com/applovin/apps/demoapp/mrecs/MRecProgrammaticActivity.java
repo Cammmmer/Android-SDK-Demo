@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode;
@@ -35,28 +34,29 @@ public final class MRecProgrammaticActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_mrec_programmatic );
 
-        adStatusTextView = (TextView) findViewById( R.id.status_label );
+        adStatusTextView = findViewById( R.id.status_label );
 
         // Create MRec
         final AppLovinAdView adView = new AppLovinAdView( AppLovinAdSize.MREC, this );
 
-        final ViewGroup rootView = (ViewGroup) findViewById( android.R.id.content );
+        final ViewGroup rootView = findViewById( android.R.id.content );
         rootView.addView( adView );
 
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams( AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getWidth() ), AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getHeight() ) );
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams( AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getWidth() ),
+                                                                              AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getHeight() ) );
         layoutParams.topMargin = AppLovinSdkUtils.dpToPx( this, 80 );
         layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
 
         adView.setLayoutParams( layoutParams );
 
         // Set up load button
-        final Button loadButton = (Button) findViewById( R.id.load_button );
-
+        final Button loadButton = findViewById( R.id.load_button );
         loadButton.setOnClickListener( new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                log( "Loading ad..." );
                 adView.loadNextAd();
             }
         } );

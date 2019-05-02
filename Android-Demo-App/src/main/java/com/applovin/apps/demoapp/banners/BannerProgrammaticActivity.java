@@ -32,17 +32,17 @@ public final class BannerProgrammaticActivity
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_banner_programmatic );
 
-        adStatusTextView = (TextView) findViewById( R.id.status_label );
+        adStatusTextView = findViewById( R.id.status_label );
 
         final AppLovinAdView adView = new AppLovinAdView( AppLovinAdSize.BANNER, this );
 
-        Button loadButton = (Button) findViewById( R.id.load_button );
-
+        final Button loadButton = findViewById( R.id.load_button );
         loadButton.setOnClickListener( new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                log( "Loading ad..." );
                 adView.loadNextAd();
             }
         } );
@@ -118,7 +118,7 @@ public final class BannerProgrammaticActivity
         } );
 
         // Add programmatically created banner into our container
-        final LinearLayout bannerContainer = (LinearLayout) findViewById( R.id.banner_container );
+        final LinearLayout bannerContainer = findViewById( R.id.banner_container );
         bannerContainer.addView( adView, new android.widget.FrameLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER ) );
 
         // Load an ad!

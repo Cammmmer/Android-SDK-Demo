@@ -8,7 +8,6 @@ import android.widget.TextView;
 public abstract class AdStatusActivity
         extends AppCompatActivity
 {
-
     protected TextView adStatusTextView;
 
     @Override
@@ -16,10 +15,8 @@ public abstract class AdStatusActivity
     {
         super.onCreate( savedInstanceState );
 
-        // TODO: use theme color
         getSupportActionBar().setBackgroundDrawable( new ColorDrawable( 0xDD0A83AA ) );
         getSupportActionBar().show();
-        //getSupportActionBar().setLogo(R.mipmap.ic_launcher);
     }
 
     protected void log(final String message)
