@@ -3,12 +3,12 @@ apply plugin: 'com.android.application'
 buildscript {
     if (!project.hasProperty('versions')) {
         ext.versions = [
-                'compileSdk'        : 28,
-                'targetSdk'         : 29,
-                'minSdk'            : 16,
-                'supportLibrary'    : "28.0.0",
-                'playServicesBase'  : "16.2.0",
-                'multiDex'          : "1.0.3"
+                'compileSdk'             : 28,
+                'targetSdk'              : 29,
+                'minSdk'                 : 16,
+                'supportLibrary'         : "28.0.0",
+                'playServicesIdentifier' : "16.0.0",
+                'multiDex'               : "1.0.3"
         ]
     }
 
@@ -58,8 +58,8 @@ dependencies {
     implementation "com.android.support:support-v13:${versions.supportLibrary}"
     implementation "com.android.support:recyclerview-v7:${versions.supportLibrary}"
 
-    // For AppLovin SDK
-    implementation "com.google.android.gms:play-services-ads:${versions.playServicesAds}"
+    // For AppLovin SDK to collect IDFA
+    implementation "com.google.android.gms:play-services-ads-identifier:${versions.playServicesIdentifier}"
 
     implementation "com.applovin:applovin-sdk:+"
 }
