@@ -8,10 +8,7 @@ import com.applovin.adview.AppLovinAdViewDisplayErrorCode
 import com.applovin.adview.AppLovinAdViewEventListener
 import com.applovin.apps.kotlindemoapp.AdStatusActivity
 import com.applovin.apps.kotlindemoapp.R
-import com.applovin.sdk.AppLovinAd
-import com.applovin.sdk.AppLovinAdDisplayListener
-import com.applovin.sdk.AppLovinAdLoadListener
-import com.applovin.sdk.AppLovinAdSize
+import com.applovin.sdk.*
 import kotlinx.android.synthetic.main.activity_banner_programmatic.*
 
 class BannerProgrammaticActivity : AdStatusActivity()
@@ -24,7 +21,9 @@ class BannerProgrammaticActivity : AdStatusActivity()
 
         adStatusTextView = status_label
 
-        val adView = AppLovinAdView(AppLovinAdSize.BANNER, this)
+        val isTablet = AppLovinSdkUtils.isTablet(this)
+        val adSize = if (isTablet) AppLovinAdSize.LEADER else AppLovinAdSize.BANNER
+        val adView = AppLovinAdView(adSize, this)
 
         load_button.setOnClickListener { adView.loadNextAd() }
 

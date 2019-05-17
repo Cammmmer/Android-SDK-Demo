@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode;
@@ -18,6 +17,7 @@ import com.applovin.sdk.AppLovinAdClickListener;
 import com.applovin.sdk.AppLovinAdDisplayListener;
 import com.applovin.sdk.AppLovinAdLoadListener;
 import com.applovin.sdk.AppLovinAdSize;
+import com.applovin.sdk.AppLovinSdkUtils;
 
 /**
  * Created by thomasso on 3/6/17.
@@ -34,7 +34,9 @@ public final class BannerProgrammaticActivity
 
         adStatusTextView = findViewById( R.id.status_label );
 
-        final AppLovinAdView adView = new AppLovinAdView( AppLovinAdSize.BANNER, this );
+        final boolean isTablet = AppLovinSdkUtils.isTablet( this );
+        final AppLovinAdSize adSize = isTablet ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
+        final AppLovinAdView adView = new AppLovinAdView( adSize, this );
 
         final Button loadButton = findViewById( R.id.load_button );
         loadButton.setOnClickListener( new View.OnClickListener()
