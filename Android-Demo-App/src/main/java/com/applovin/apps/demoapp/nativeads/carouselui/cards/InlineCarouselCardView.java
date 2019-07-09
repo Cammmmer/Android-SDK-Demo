@@ -125,14 +125,14 @@ public class InlineCarouselCardView
 
     private void bindViews()
     {
-        contentLayout = (LinearLayout) findViewById( R.id.applovin_card_content_layout );
-        appIconImageView = (ImageView) findViewById( R.id.applovin_card_app_icon );
-        appTitleTextView = (TextView) findViewById( R.id.applovin_card_title );
-        appDescriptionTextView = (TextView) findViewById( R.id.applovin_card_app_description_text_view );
-        mediaView = (InlineCarouselCardMediaView) findViewById( R.id.applovin_card_video_ad_view );
-        starRatingImageView = (ImageView) findViewById( R.id.applovin_card_star_rating );
-        downloadCTATextView = (TextView) findViewById( R.id.applovin_card_caption );
-        downloadButton = (Button) findViewById( R.id.applovin_card_action_button );
+        contentLayout = findViewById( R.id.applovin_card_content_layout );
+        appIconImageView = findViewById( R.id.applovin_card_app_icon );
+        appTitleTextView = findViewById( R.id.applovin_card_title );
+        appDescriptionTextView = findViewById( R.id.applovin_card_app_description_text_view );
+        mediaView = findViewById( R.id.applovin_card_video_ad_view );
+        starRatingImageView = findViewById( R.id.applovin_card_star_rating );
+        downloadCTATextView = findViewById( R.id.applovin_card_caption );
+        downloadButton = findViewById( R.id.applovin_card_action_button );
     }
 
     public void renderCard()

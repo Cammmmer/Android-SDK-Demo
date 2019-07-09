@@ -1,17 +1,17 @@
 package com.applovin.apps.kotlindemoapp.leaders
 
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.view.Gravity
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.applovin.adview.AppLovinAdView
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode
 import com.applovin.adview.AppLovinAdViewEventListener
 import com.applovin.apps.kotlindemoapp.AdStatusActivity
 import com.applovin.apps.kotlindemoapp.R
-import com.applovin.sdk.AppLovinAd
-import com.applovin.sdk.AppLovinAdDisplayListener
-import com.applovin.sdk.AppLovinAdLoadListener
-import com.applovin.sdk.AppLovinAdSize
+import com.applovin.sdk.*
 import kotlinx.android.synthetic.main.activity_leader_programmatic.*
 
 class LeaderProgrammaticActivity : AdStatusActivity()
@@ -84,7 +84,12 @@ class LeaderProgrammaticActivity : AdStatusActivity()
                                       })
 
         // Add programmatically created banner into our container
-        leader_container.addView(adView, android.widget.FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER))
+        leader_programmatic_layout.addView(adView, ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, AppLovinSdkUtils.dpToPx(this, 90)))
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(leader_programmatic_layout)
+        constraintSet.connect(adView.id, ConstraintSet.BOTTOM, R.id.leader_programmatic_layout, ConstraintSet.BOTTOM, 0)
+        constraintSet.applyTo(leader_programmatic_layout)
 
         // Load an ad!
         adView.loadNextAd()

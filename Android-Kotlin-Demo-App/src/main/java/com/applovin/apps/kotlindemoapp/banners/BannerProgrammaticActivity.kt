@@ -1,7 +1,9 @@
 package com.applovin.apps.kotlindemoapp.banners
 
 import android.os.Bundle
-import android.view.Gravity
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
+import android.support.v4.view.ViewCompat
 import android.view.ViewGroup
 import com.applovin.adview.AppLovinAdView
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode
@@ -25,6 +27,7 @@ class BannerProgrammaticActivity : AdStatusActivity()
         val adSize = if (isTablet) AppLovinAdSize.LEADER else AppLovinAdSize.BANNER
         val adView = AppLovinAdView(adSize, this)
 
+        adView.id = ViewCompat.generateViewId()
         load_button.setOnClickListener { adView.loadNextAd() }
 
         //
@@ -61,26 +64,35 @@ class BannerProgrammaticActivity : AdStatusActivity()
 
         adView.setAdViewEventListener(object : AppLovinAdViewEventListener
                                       {
-                                          override fun adOpenedFullscreen(ad: AppLovinAd?, adView: AppLovinAdView?) {
+                                          override fun adOpenedFullscreen(ad: AppLovinAd?, adView: AppLovinAdView?)
+                                          {
                                               log("Banner opened fullscreen")
                                           }
 
-                                          override fun adClosedFullscreen(ad: AppLovinAd?, adView: AppLovinAdView?) {
+                                          override fun adClosedFullscreen(ad: AppLovinAd?, adView: AppLovinAdView?)
+                                          {
 
                                               log("Banner closed fullscreen")
                                           }
 
-                                          override fun adLeftApplication(ad: AppLovinAd?, adView: AppLovinAdView?) {
+                                          override fun adLeftApplication(ad: AppLovinAd?, adView: AppLovinAdView?)
+                                          {
                                               log("Banner left application")
                                           }
 
-                                          override fun adFailedToDisplay(ad: AppLovinAd?, adView: AppLovinAdView?, code: AppLovinAdViewDisplayErrorCode?) {
+                                          override fun adFailedToDisplay(ad: AppLovinAd?, adView: AppLovinAdView?, code: AppLovinAdViewDisplayErrorCode?)
+                                          {
                                               log("Banner failed to display with error code " + code)
                                           }
                                       })
 
         // Add programmatically created banner into our container
-        banner_container.addView(adView, android.widget.FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER))
+        banner_programmatic_content_layout.addView(adView, ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, AppLovinSdkUtils.dpToPx(this, 50)))
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(banner_programmatic_content_layout)
+        constraintSet.connect(adView.id, ConstraintSet.BOTTOM, R.id.banner_programmatic_content_layout, ConstraintSet.BOTTOM, 0)
+        constraintSet.applyTo(banner_programmatic_content_layout)
 
         // Load an ad!
         adView.loadNextAd()

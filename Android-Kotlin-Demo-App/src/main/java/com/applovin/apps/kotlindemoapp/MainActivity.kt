@@ -24,10 +24,12 @@ import kotlinx.android.synthetic.main.activity_list.*
 import java.util.*
 
 
-class MainActivity : DemoMenuActivity() {
+class MainActivity : DemoMenuActivity()
+{
     private lateinit var muteToggleMenuItem: MenuItem
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
 
         AppLovinSdk.getInstance(this).initializeSdk {
@@ -44,12 +46,16 @@ class MainActivity : DemoMenuActivity() {
         checkSdkKey()
     }
 
-    override fun setupListViewFooter() {
+    override fun setupListViewFooter()
+    {
         var appVersion = ""
-        try {
+        try
+        {
             val pInfo = packageManager.getPackageInfo(packageName, 0)
             appVersion = pInfo.versionName
-        } catch (e: PackageManager.NameNotFoundException) {
+        }
+        catch (e: PackageManager.NameNotFoundException)
+        {
             e.printStackTrace()
         }
 
@@ -67,7 +73,8 @@ class MainActivity : DemoMenuActivity() {
         list_view.setFooterDividersEnabled(false)
     }
 
-    private fun makeContactIntent(): Intent {
+    private fun makeContactIntent(): Intent
+    {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.type = "text/plain"
         intent.data = Uri.parse("mailto:" + "support@applovin.com")
@@ -76,7 +83,8 @@ class MainActivity : DemoMenuActivity() {
         return Intent.createChooser(intent, "Send Email")
     }
 
-    override fun getListViewContents(): Array<DemoMenuItem> {
+    override fun getListViewContents(): Array<DemoMenuItem>
+    {
         var items = arrayOf(
                 DemoMenuItem("Interstitials", "Full screen ads. Graphic or video", Intent(this, InterstitialDemoMenuActivity::class.java)),
                 DemoMenuItem("Rewarded Videos (Incentivized Ads)", "Reward your users for watching these on-demand videos", Intent(this, RewardedVideosDemoMenuActivity::class.java)),
@@ -87,7 +95,8 @@ class MainActivity : DemoMenuActivity() {
                 DemoMenuItem("Resources", "https://support.applovin.com/support/home", Intent(Intent.ACTION_VIEW, Uri.parse("https://support.applovin.com/support/home"))),
                 DemoMenuItem("Contact", "support@applovin.com", makeContactIntent())
         )
-        if (resources.getBoolean(R.bool.is_tablet)) {
+        if (resources.getBoolean(R.bool.is_tablet))
+        {
             val menuItems = ArrayList<DemoMenuItem>(items.size + 1)
             menuItems.addAll(Arrays.asList(*items))
             // Add Leaders menu item below MRecs.
@@ -97,9 +106,11 @@ class MainActivity : DemoMenuActivity() {
         return items;
     }
 
-    private fun checkSdkKey() {
+    private fun checkSdkKey()
+    {
         val sdkKey = AppLovinSdk.getInstance(applicationContext).sdkKey
-        if ("YOUR_SDK_KEY".equals(sdkKey, ignoreCase = true)) {
+        if ("YOUR_SDK_KEY".equals(sdkKey, ignoreCase = true))
+        {
             AlertDialog.Builder(this)
                     .setTitle("ERROR")
                     .setMessage("Please update your sdk key in the manifest file.")
@@ -114,31 +125,38 @@ class MainActivity : DemoMenuActivity() {
     /**
      * Toggling the sdk mute setting will affect whether your video ads begin in a muted state or not.
      */
-    private fun toggleMute() {
+    private fun toggleMute()
+    {
         val sdk = AppLovinSdk.getInstance(applicationContext)
         sdk.settings.isMuted = !sdk.settings.isMuted
         muteToggleMenuItem.icon = getMuteIconForCurrentSdkMuteSetting()
     }
 
-    private fun getMuteIconForCurrentSdkMuteSetting(): Drawable {
+    private fun getMuteIconForCurrentSdkMuteSetting(): Drawable
+    {
         val sdk = AppLovinSdk.getInstance(applicationContext)
         val drawableId = if (sdk.settings.isMuted) R.drawable.mute else R.drawable.unmute
 
-        if (Build.VERSION.SDK_INT >= 22) {
+        if (Build.VERSION.SDK_INT >= 22)
+        {
             return resources.getDrawable(drawableId, theme)
-        } else {
+        }
+        else
+        {
             @Suppress("DEPRECATION")
             return resources.getDrawable(drawableId)
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean
+    {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean
+    {
         muteToggleMenuItem = menu.findItem(R.id.action_toggle_mute).apply {
             icon = getMuteIconForCurrentSdkMuteSetting()
         }
@@ -146,8 +164,10 @@ class MainActivity : DemoMenuActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_toggle_mute) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        if (item.itemId == R.id.action_toggle_mute)
+        {
             toggleMute()
         }
 

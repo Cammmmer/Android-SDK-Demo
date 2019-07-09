@@ -1,11 +1,12 @@
 package com.applovin.apps.demoapp.banners;
 
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode;
@@ -37,6 +38,8 @@ public final class BannerProgrammaticActivity
         final boolean isTablet = AppLovinSdkUtils.isTablet( this );
         final AppLovinAdSize adSize = isTablet ? AppLovinAdSize.LEADER : AppLovinAdSize.BANNER;
         final AppLovinAdView adView = new AppLovinAdView( adSize, this );
+
+        adView.setId( ViewCompat.generateViewId() );
 
         final Button loadButton = findViewById( R.id.load_button );
         loadButton.setOnClickListener( new View.OnClickListener()
@@ -120,8 +123,14 @@ public final class BannerProgrammaticActivity
         } );
 
         // Add programmatically created banner into our container
-        final LinearLayout bannerContainer = findViewById( R.id.banner_container );
-        bannerContainer.addView( adView, new android.widget.FrameLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.CENTER ) );
+        final ConstraintLayout bannerProgrammaticContentLayout = findViewById( R.id.banner_programmatic_layout );
+
+        bannerProgrammaticContentLayout.addView( adView, new ConstraintLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, AppLovinSdkUtils.dpToPx( this, 50 ) ) );
+
+        final ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone( bannerProgrammaticContentLayout );
+        constraintSet.connect( adView.getId(), ConstraintSet.BOTTOM, R.id.banner_programmatic_layout, ConstraintSet.BOTTOM, 0 );
+        constraintSet.applyTo( bannerProgrammaticContentLayout );
 
         // Load an ad!
         adView.loadNextAd();

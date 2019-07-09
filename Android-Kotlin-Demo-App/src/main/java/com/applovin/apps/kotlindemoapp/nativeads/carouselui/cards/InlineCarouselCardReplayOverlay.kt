@@ -4,7 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 
 import com.applovin.apps.kotlindemoapp.R
 
@@ -17,8 +19,10 @@ class InlineCarouselCardReplayOverlay : LinearLayout
     var replayClickListener: View.OnClickListener? = null
     var learnMoreClickListener: View.OnClickListener? = null
 
-    private var replayLayout: LinearLayout? = null
-    private var learnMoreLayout: LinearLayout? = null
+    private var replayImage: ImageView? = null
+    private var learnMoreImage: ImageView? = null
+    private var replayText: TextView? = null
+    private var learnMoreText: TextView? = null
 
     constructor(context: Context) : super(context)
 
@@ -39,13 +43,17 @@ class InlineCarouselCardReplayOverlay : LinearLayout
 
     private fun bindViews()
     {
-        replayLayout = findViewById<View>(R.id.applovin_card_overlay_replay_layout) as LinearLayout
-        learnMoreLayout = findViewById<View>(R.id.applovin_card_overlay_learn_more_layout) as LinearLayout
+        replayImage = findViewById(R.id.applovin_card_overlay_replay_image)
+        replayText = findViewById(R.id.applovin_card_overlay_replay_text)
+        learnMoreImage = findViewById(R.id.applovin_card_overlay_learn_more_image)
+        learnMoreText = findViewById(R.id.applovin_card_overlay_learn_more_text)
     }
 
     private fun initializeView()
     {
-        replayLayout!!.setOnClickListener(replayClickListener)
-        learnMoreLayout!!.setOnClickListener(learnMoreClickListener)
+        replayImage!!.setOnClickListener(replayClickListener)
+        replayText!!.setOnClickListener(replayClickListener)
+        learnMoreImage!!.setOnClickListener(learnMoreClickListener)
+        learnMoreText!!.setOnClickListener(learnMoreClickListener)
     }
 }

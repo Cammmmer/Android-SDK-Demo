@@ -3,7 +3,9 @@ package com.applovin.apps.demoapp.nativeads.carouselui.cards;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.applovin.apps.demoapp.R;
 
@@ -17,8 +19,10 @@ public class InlineCarouselCardReplayOverlay
     private OnClickListener replayClickListener;
     private OnClickListener learnMoreClickListener;
 
-    private LinearLayout replayLayout;
-    private LinearLayout learnMoreLayout;
+    private ImageView replayImage;
+    private ImageView learnMoreImage;
+    private TextView  replayText;
+    private TextView  learnMoreText;
 
     public InlineCarouselCardReplayOverlay(Context context)
     {
@@ -71,13 +75,17 @@ public class InlineCarouselCardReplayOverlay
 
     private void bindViews()
     {
-        replayLayout = (LinearLayout) findViewById( R.id.applovin_card_overlay_replay_layout );
-        learnMoreLayout = (LinearLayout) findViewById( R.id.applovin_card_overlay_learn_more_layout );
+        replayImage = findViewById( R.id.applovin_card_overlay_replay_image );
+        replayText = findViewById( R.id.applovin_card_overlay_replay_text );
+        learnMoreImage = findViewById( R.id.applovin_card_overlay_learn_more_image );
+        learnMoreText = findViewById( R.id.applovin_card_overlay_learn_more_text );
     }
 
     private void initializeView()
     {
-        replayLayout.setOnClickListener( replayClickListener );
-        learnMoreLayout.setOnClickListener( learnMoreClickListener );
+        replayImage.setOnClickListener( replayClickListener );
+        replayText.setOnClickListener( replayClickListener );
+        learnMoreImage.setOnClickListener( learnMoreClickListener );
+        learnMoreText.setOnClickListener( learnMoreClickListener );
     }
 }

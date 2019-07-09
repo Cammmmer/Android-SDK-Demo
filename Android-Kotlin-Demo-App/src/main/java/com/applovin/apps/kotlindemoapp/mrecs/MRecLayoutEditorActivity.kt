@@ -1,10 +1,8 @@
 package com.applovin.apps.kotlindemoapp.mrecs
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
-
 import com.applovin.adview.AppLovinAdView
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode
 import com.applovin.adview.AppLovinAdViewEventListener
@@ -18,8 +16,10 @@ import com.applovin.sdk.AppLovinAdLoadListener
  * Created by monica on 7/24/17.
  */
 
-class MRecLayoutEditorActivity : AdStatusActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class MRecLayoutEditorActivity : AdStatusActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mrec_layout_editor)
 
@@ -35,46 +35,57 @@ class MRecLayoutEditorActivity : AdStatusActivity() {
         //
         // Optional: Set listeners
         //
-        adView.setAdLoadListener(object : AppLovinAdLoadListener {
-            override fun adReceived(ad: AppLovinAd) {
-                log("MRec loaded")
-            }
+        adView.setAdLoadListener(object : AppLovinAdLoadListener
+                                 {
+                                     override fun adReceived(ad: AppLovinAd)
+                                     {
+                                         log("MRec loaded")
+                                     }
 
-            override fun failedToReceiveAd(errorCode: Int) {
-                // Look at AppLovinErrorCodes.java for list of error codes
-                log("MRec failed to load with error code " + errorCode)
-            }
-        })
+                                     override fun failedToReceiveAd(errorCode: Int)
+                                     {
+                                         // Look at AppLovinErrorCodes.java for list of error codes
+                                         log("MRec failed to load with error code " + errorCode)
+                                     }
+                                 })
 
-        adView.setAdDisplayListener(object : AppLovinAdDisplayListener {
-            override fun adDisplayed(ad: AppLovinAd) {
-                log("MRec Displayed")
-            }
+        adView.setAdDisplayListener(object : AppLovinAdDisplayListener
+                                    {
+                                        override fun adDisplayed(ad: AppLovinAd)
+                                        {
+                                            log("MRec Displayed")
+                                        }
 
-            override fun adHidden(ad: AppLovinAd) {
-                log("MRec Hidden")
-            }
-        })
+                                        override fun adHidden(ad: AppLovinAd)
+                                        {
+                                            log("MRec Hidden")
+                                        }
+                                    })
 
         adView.setAdClickListener { log("MRec Clicked") }
 
-        adView.setAdViewEventListener(object : AppLovinAdViewEventListener {
-            override fun adOpenedFullscreen(ad: AppLovinAd, adView: AppLovinAdView) {
-                log("MRec opened fullscreen")
-            }
+        adView.setAdViewEventListener(object : AppLovinAdViewEventListener
+                                      {
+                                          override fun adOpenedFullscreen(ad: AppLovinAd, adView: AppLovinAdView)
+                                          {
+                                              log("MRec opened fullscreen")
+                                          }
 
-            override fun adClosedFullscreen(ad: AppLovinAd, adView: AppLovinAdView) {
-                log("MRec closed fullscreen")
-            }
+                                          override fun adClosedFullscreen(ad: AppLovinAd, adView: AppLovinAdView)
+                                          {
+                                              log("MRec closed fullscreen")
+                                          }
 
-            override fun adLeftApplication(ad: AppLovinAd, adView: AppLovinAdView) {
-                log("MRec left application")
-            }
+                                          override fun adLeftApplication(ad: AppLovinAd, adView: AppLovinAdView)
+                                          {
+                                              log("MRec left application")
+                                          }
 
-            override fun adFailedToDisplay(ad: AppLovinAd, adView: AppLovinAdView, code: AppLovinAdViewDisplayErrorCode) {
-                log("MRec failed to display with error code " + code)
-            }
-        })
+                                          override fun adFailedToDisplay(ad: AppLovinAd, adView: AppLovinAdView, code: AppLovinAdViewDisplayErrorCode)
+                                          {
+                                              log("MRec failed to display with error code " + code)
+                                          }
+                                      })
 
         // Load an ad!
         adView.loadNextAd()

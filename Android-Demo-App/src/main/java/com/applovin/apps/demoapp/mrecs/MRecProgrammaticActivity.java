@@ -1,13 +1,12 @@
-
 package com.applovin.apps.demoapp.mrecs;
 
 
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
+import android.support.v4.view.ViewCompat;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.applovin.adview.AppLovinAdView;
 import com.applovin.adview.AppLovinAdViewDisplayErrorCode;
@@ -38,16 +37,18 @@ public final class MRecProgrammaticActivity
 
         // Create MRec
         final AppLovinAdView adView = new AppLovinAdView( AppLovinAdSize.MREC, this );
+        adView.setId( ViewCompat.generateViewId() );
 
-        final ViewGroup rootView = findViewById( android.R.id.content );
-        rootView.addView( adView );
+        final ConstraintLayout mrecConstraintLayout = findViewById( R.id.mrec_programmatic_constraint_layout );
+        final ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams( AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getWidth() ),
+                                                                                              AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getHeight() ) );
+        mrecConstraintLayout.addView( adView, layoutParams );
 
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams( AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getWidth() ),
-                                                                              AppLovinSdkUtils.dpToPx( this, AppLovinAdSize.MREC.getHeight() ) );
-        layoutParams.topMargin = AppLovinSdkUtils.dpToPx( this, 80 );
-        layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
-
-        adView.setLayoutParams( layoutParams );
+        final ConstraintSet set = new ConstraintSet();
+        set.clone( mrecConstraintLayout );
+        set.connect( adView.getId(), ConstraintSet.TOP, mrecConstraintLayout.getId(), ConstraintSet.TOP, AppLovinSdkUtils.dpToPx( this, 80 ) );
+        set.centerHorizontally( adView.getId(), mrecConstraintLayout.getId() );
+        set.applyTo( mrecConstraintLayout );
 
         // Set up load button
         final Button loadButton = findViewById( R.id.load_button );
