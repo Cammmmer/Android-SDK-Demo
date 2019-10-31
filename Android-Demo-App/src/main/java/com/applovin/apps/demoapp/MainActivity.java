@@ -49,9 +49,6 @@ public class MainActivity
             }
         } );
 
-        // Mark that we are in a testing environment
-        AppLovinSdk.getInstance( this ).getSettings().setTestAdsEnabled( true );
-
         // Set an identifier for the current user. This identifier will be tied to various analytics events and rewarded video validation
         AppLovinSdk.getInstance( this ).setUserIdentifier( "support@applovin.com" );
 
