@@ -19,6 +19,8 @@ package com.applovin.apps.demoapp.nativeads.carouselui.support;
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
 import android.os.Parcelable;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -26,8 +28,8 @@ import android.view.ViewGroup;
  * Base class providing the adapter to populate pages inside of
  * a {@link ViewPager}.  You will most likely want to use a more
  * specific implementation of this, such as
- * {@link android.support.v4.app.FragmentPagerAdapter} or
- * {@link android.support.v4.app.FragmentStatePagerAdapter}.
+ * {@link FragmentPagerAdapter} or
+ * {@link FragmentStatePagerAdapter}.
  * <p/>
  * <p>When you implement a PagerAdapter, you must override the following methods
  * at minimum:</p>

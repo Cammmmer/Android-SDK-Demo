@@ -1,8 +1,8 @@
 package com.applovin.apps.kotlindemoapp.leaders
 
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
-import android.support.constraint.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout

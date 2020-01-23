@@ -1,15 +1,17 @@
-apply plugin: 'com.android.application'
+apply plugin: "com.android.application"
 
 buildscript {
-    if (!project.hasProperty('versions')) {
+    if (!project.hasProperty("versions")) {
         ext.versions = [
-                'compileSdk'            : 28,
-                'targetSdk'             : 29,
-                'minSdk'                : 16,
-                'supportLibrary'        : "28.0.0",
-                'playServicesIdentifier': "16.0.0",
-                'multiDex'              : "1.0.3",
-                'constraintLayout'      : "1.1.3",
+                "compileSdk"            : 28,
+                "targetSdk"             : 29,
+                "minSdk"                : 16,
+                "appcompat"             : "1.1.0",
+                "legacySupportV13"      : "1.0.0",
+                "recyclerView"          : "1.1.0",
+                "playServicesIdentifier": "16.0.0",
+                "multiDex"              : "2.0.1",
+                "constraintLayout"      : "1.1.3",
         ]
     }
 
@@ -18,7 +20,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath "com.android.tools.build:gradle:3.5.3"
     }
 }
 
@@ -46,7 +48,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
         debug {
             debuggable true
@@ -57,12 +59,12 @@ android {
 dependencies {
     implementation fileTree(include: ["*.jar"], dir: "libs")
 
-    implementation "com.android.support:multidex:${versions.multiDex}"
+    implementation "androidx.multidex:multidex:${versions.multiDex}"
 
-    implementation "com.android.support:appcompat-v7:${versions.supportLibrary}"
-    implementation "com.android.support:support-v13:${versions.supportLibrary}"
-    implementation "com.android.support:recyclerview-v7:${versions.supportLibrary}"
-    implementation "com.android.support.constraint:constraint-layout:${versions.constraintLayout}"
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "androidx.legacy:legacy-support-v13:${versions.legacySupportV13}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}"
 
     // For AppLovin SDK to collect IDFA
     implementation "com.google.android.gms:play-services-ads-identifier:${versions.playServicesIdentifier}"

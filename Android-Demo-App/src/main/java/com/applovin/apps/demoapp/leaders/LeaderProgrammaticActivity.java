@@ -1,10 +1,10 @@
 package com.applovin.apps.demoapp.leaders;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.constraint.ConstraintSet;
-import android.support.v4.view.ViewCompat;
-import android.view.Gravity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.view.ViewCompat;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
