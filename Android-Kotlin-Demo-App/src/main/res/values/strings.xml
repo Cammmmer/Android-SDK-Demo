@@ -19,9 +19,9 @@
     <string name="title_activity_banner_layout_editor">Layout Editor Banners</string>
     <string name="title_activity_banner_zone_integration">Zone Integration</string>
 
-    <string name="title_activity_mrec_list">MRecs</string>
-    <string name="title_activity_mrec_programmatic">Programmatic MRecs</string>
-    <string name="title_activity_mrec_layout_editor">Layout Editor MRecs</string>
+    <string name="title_activity_mrec_list">MRECs</string>
+    <string name="title_activity_mrec_programmatic">Programmatic MRECs</string>
+    <string name="title_activity_mrec_layout_editor">Layout Editor MRECs</string>
 
     <string name="title_activity_leader_list">Leaders</string>
     <string name="title_activity_leader_programmatic">Programmatic Leaders</string>

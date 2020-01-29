@@ -87,7 +87,7 @@ class MainActivity : DemoMenuActivity()
                 DemoMenuItem("Rewarded Videos (Incentivized Ads)", "Reward your users for watching these on-demand videos", Intent(this, RewardedVideosDemoMenuActivity::class.java)),
                 DemoMenuItem("Native Ads", "In-content ads that blend in seamlessly", Intent(this, NativeAdDemoMenuActivity::class.java)),
                 DemoMenuItem("Banners", "320x50 Classic banner ads", Intent(this, BannerDemoMenuActivity::class.java)),
-                DemoMenuItem("MRecs", "300x250 Rectangular ads typically used in-content", Intent(this, MRecDemoMenuActivity::class.java)),
+                DemoMenuItem("MRECs", "300x250 Rectangular ads typically used in-content", Intent(this, MRecDemoMenuActivity::class.java)),
                 DemoMenuItem("Event Tracking", "Track in-app events for your users", Intent(this, EventTrackingActivity::class.java)),
                 DemoMenuItem("Resources", "https://support.applovin.com/support/home", Intent(Intent.ACTION_VIEW, Uri.parse("https://support.applovin.com/support/home"))),
                 DemoMenuItem("Contact", "support@applovin.com", makeContactIntent())
@@ -96,7 +96,7 @@ class MainActivity : DemoMenuActivity()
         {
             val menuItems = ArrayList<DemoMenuItem>(items.size + 1)
             menuItems.addAll(Arrays.asList(*items))
-            // Add Leaders menu item below MRecs.
+            // Add Leaders menu item below MRECs.
             menuItems.add(5, DemoMenuItem("Leaders", "728x90 leaderboard advertisement indented for tablets", Intent(this, LeaderDemoMenuActivity::class.java)))
             items = menuItems.toTypedArray()
         }

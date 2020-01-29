@@ -64,7 +64,7 @@ public class MainActivity
                 new DemoMenuItem( "Rewarded Videos (Incentivized Ads)", "Reward your users for watching these on-demand videos", new Intent( this, RewardedVideosDemoMenuActivity.class ) ),
                 new DemoMenuItem( "Native Ads", "In-content ads that blend in seamlessly", new Intent( this, NativeAdDemoMenuActivity.class ) ),
                 new DemoMenuItem( "Banners", "320x50 Classic banner ads", new Intent( this, BannerDemoMenuActivity.class ) ),
-                new DemoMenuItem( "MRecs", "300x250 Rectangular ads typically used in-content", new Intent( this, MRecDemoMenuActivity.class ) ),
+                new DemoMenuItem( "MRECs", "300x250 Rectangular ads typically used in-content", new Intent( this, MRecDemoMenuActivity.class ) ),
                 new DemoMenuItem( "Event Tracking", "Track in-app events for your users", new Intent( this, EventTrackingActivity.class ) ),
                 new DemoMenuItem( "Resources", "https://support.applovin.com/support/home", new Intent( Intent.ACTION_VIEW, Uri.parse( "https://support.applovin.com/support/home" ) ) ),
                 new DemoMenuItem( "Contact", "support@applovin.com", getContactIntent() )
@@ -74,7 +74,7 @@ public class MainActivity
         {
             ArrayList<DemoMenuItem> menuItems = new ArrayList<>( result.length + 1 );
             menuItems.addAll( Arrays.asList( result ) );
-            // Add Leaders menu item below MRecs.
+            // Add Leaders menu item below MRECs.
             menuItems.add( 5, new DemoMenuItem( "Leaders", "728x90 leaderboard advertisement indented for tablets", new Intent( this, LeaderDemoMenuActivity.class ) ) );
             result = menuItems.toArray( result );
         }
