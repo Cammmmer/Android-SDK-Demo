@@ -3,6 +3,7 @@ package com.applovin.apps.kotlindemoapp.nativeads.carouselui.cards
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
@@ -11,6 +12,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import com.applovin.apps.kotlindemoapp.R
 import com.applovin.apps.kotlindemoapp.nativeads.carouselui.AppLovinCarouselViewSettings
 import com.applovin.apps.kotlindemoapp.nativeads.carouselui.support.AppLovinTouchToClickListener
@@ -51,6 +53,7 @@ class InlineCarouselCardView : FrameLayout, InlineCarouselCardCallbacks, AppLovi
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
 
     fun setUpView()
@@ -162,7 +165,7 @@ class InlineCarouselCardView : FrameLayout, InlineCarouselCardCallbacks, AppLovi
         if (!cardState!!.isImpressionTracked)
         {
             cardState!!.isImpressionTracked = true
-            sdk!!.postbackService.dispatchPostbackAsync(ad!!.impressionTrackingUrl, null)
+            ad!!.trackImpression()
         }
     }
 

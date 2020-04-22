@@ -1,4 +1,1 @@
 include ':Android-Demo-App', ':Android-Kotlin-Demo-App'
-
-include ':Android-SDK'
-project(':Android-SDK').projectDir = new File(settingsDir, '../Android-SDK')

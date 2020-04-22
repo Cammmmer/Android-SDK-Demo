@@ -3,6 +3,7 @@ package com.applovin.apps.demoapp.nativeads.carouselui.cards;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.AttributeSet;
@@ -25,6 +26,8 @@ import com.applovin.nativeAds.AppLovinNativeAd;
 import com.applovin.nativeAds.AppLovinNativeAdPrecacheListener;
 import com.applovin.sdk.AppLovinSdk;
 import com.applovin.sdk.AppLovinSdkUtils;
+
+import androidx.annotation.RequiresApi;
 
 import static com.applovin.apps.demoapp.nativeads.carouselui.util.LayoutUtils.WRAP_CONTENT;
 
@@ -69,6 +72,7 @@ public class InlineCarouselCardView
         super( context, attrs, defStyleAttr );
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public InlineCarouselCardView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes)
     {
         super( context, attrs, defStyleAttr, defStyleRes );
@@ -242,7 +246,7 @@ public class InlineCarouselCardView
         if ( !cardState.isImpressionTracked() )
         {
             cardState.setImpressionTracked( true );
-            sdk.getPostbackService().dispatchPostbackAsync( ad.getImpressionTrackingUrl(), null );
+            ad.trackImpression();
         }
     }
 
